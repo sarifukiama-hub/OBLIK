@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBLIK — Avant-Garde Modular Furniture &amp; Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <!-- Syne for warm elegant titles, Plus Jakarta Sans for clean geometric body -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        syne: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        studio: {
+                            50: '#FAF8F5',  /* Warm off-white/cream */
+                            100: '#F4F1EC', /* Soft warm gray */
+                            200: '#E9E4DB', /* Subtle border warm tone */
+                            300: '#D5CFC4',
+                            900: '#1A1917', /* Dark charcoal instead of pure black */
+                        },
+                        clay: '#BF6B43',    /* Softer premium terracotta */
+                        sage: '#7C9284',    /* Muted organic sage */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions for sofa building blocks */
+        .module-block {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* Elegant clean scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #F4F1EC;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #1A1917;
+        }
+    </style>
+</head>
+<body class="bg-studio-50 text-studio-900 font-sans antialiased selection:bg-studio-200">
+
+    <!-- HEADER: Clean & Minimal Navigation -->
+    <header class="border-b border-studio-200 sticky top-0 bg-studio-50/90 backdrop-blur-md z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <a href="#" class="font-syne text-2xl tracking-tight uppercase font-extrabold">OBLIK.</a>
+                <span class="text-[10px] bg-studio-200 text-studio-900 px-3 py-1 rounded-full font-sans font-bold uppercase tracking-widest hidden sm:inline-block">Est. 2026</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-10 text-xs uppercase tracking-[0.2em] font-bold">
+                <a href="#configurator" class="text-studio-900 border-b-2 border-studio-900 pb-1">Configurator</a>
+                <a href="#objects" class="text-studio-300 hover:text-studio-900 transition-colors">Bespoke Objects</a>
+                <a href="#materials" class="text-studio-300 hover:text-studio-900 transition-colors">Tactile Library</a>
+            </nav>
+
+            <div>
+                <a href="#configurator" class="bg-studio-900 text-studio-50 px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-clay transition-colors duration-300 rounded-lg">
+                    Build Sofa
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONFIGURATOR SECTION -->
+    <section id="configurator" class="py-12 lg:py-20 border-b border-studio-200">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <!-- Intro Header (Warm Editorial Style) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-end">
+                <div class="lg:col-span-8">
+                    <span class="text-xs uppercase tracking-[0.25em] font-bold text-clay block mb-3">Custom Studio System</span>
+                    <h1 class="font-syne text-4xl sm:text-6xl tracking-tight leading-none font-extrabold uppercase">MODULAR <br>SOFA SYSTEM
+                    </h1>
+                </div>
+                <div class="lg:col-span-4 text-studio-300 text-sm font-light leading-relaxed">
+                    Designed for endless adaptation. Arrange modular segments, choose tactile natural fabrics, and craft a bespoke center of gravity for your interior.
+                </div>
+            </div>
+
+            <!-- WORKSPACE & CONTROLS GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                <!-- LEFT SIDE: Cozy Visualizer Studio Backdrop -->
+                <div class="lg:col-span-8 bg-[#F3EFE9] border border-studio-200 rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[480px] md:min-h-[580px] relative overflow-hidden shadow-sm">
+                    
+                    <!-- Floor/Wall Perspective Join (Grounding the Sofa) -->
+                    <div class="absolute bottom-28 left-0 right-0 h-[1px] bg-studio-200/60 pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 right-0 h-28 bg-[#ECE7DE] pointer-events-none"></div>
+
+                    <!-- Top subtle info tag -->
+                    <div class="flex justify-between items-center z-10">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-studio-300">Active Arrangement</span>
+                        <span class="text-xs text-studio-300 font-light">Perspective: Front Elevation</span>
+                    </div>
+
+                    <!-- SOFA VISUALIZER VIEWPORT -->
+                    <div class="my-auto py-12 flex items-end justify-center min-h-[260px] z-10">
+                        <div id="sofa-canvas" class="flex items-end justify-center gap-0.5 transition-all duration-500 max-w-full overflow-x-auto p-4">
+                            <!-- JS dynamically places beautiful sofa blocks here -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Spec Sheets (Clean & Editorial) -->
+                    <div class="grid grid-cols-3 gap-6 border-t border-studio-200/50 pt-6 z-10">
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest text-studio-300 font-bold">Total Width</span>
+                            <span class="text-base font-bold text-studio-900 mt-1 block" id="metric-width">0 cm</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest text-studio-300 font-bold">Seats</span>
+                            <span class="text-base font-bold text-studio-900 mt-1 block" id="metric-seats">0 persons</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest text-studio-300 font-bold">Segments</span>
+                            <span class="text-base font-bold text-studio-900 mt-1 block" id="metric-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDE: Control Panel -->
+                <div class="lg:col-span-4 flex flex-col justify-between">
+                    <div class="space-y-10">
+                        
+                        <!-- Step 1: Fabric Selection -->
+                        <div>
+                            <span class="text-xs uppercase tracking-widest font-bold text-studio-300 block mb-4">01. Choose Textile Finish</span>
+                            <div class="grid grid-cols-2 gap-3" id="fabric-selector">
+                                <!-- Option 1 -->
+                                <button onclick="setFabric('boucle')" class="fabric-btn border-2 border-studio-900 bg-studio-50 p-4 text-left rounded-2xl transition-all relative overflow-hidden group" data-fabric="boucle">
+                                    <span class="w-4 h-4 rounded-full bg-[#EAE3D2] border border-studio-200 block mb-2"></span>
+                                    <span class="block text-xs font-bold text-studio-900">Nordic Bouclé</span>
+                                    <span class="text-[10px] text-studio-300 block mt-1">Warm tactile wool</span>
+                                </button>
+                                <!-- Option 2 -->
+                                <button onclick="setFabric('sage')" class="fabric-btn border-2 border-transparent hover:border-studio-200 bg-studio-100 p-4 text-left rounded-2xl transition-all relative overflow-hidden group" data-fabric="sage">
+                                    <span class="w-4 h-4 rounded-full bg-[#8FA499] border border-studio-200 block mb-2"></span>
+                                    <span class="block text-xs font-bold text-studio-900">Lichen Linen</span>
+                                    <span class="text-[10px] text-studio-300 block mt-1">Muted mineral sage</span>
+                                </button>
+                                <!-- Option 3 -->
+                                <button onclick="setFabric('clay')" class="fabric-btn border-2 border-transparent hover:border-studio-200 bg-studio-100 p-4 text-left rounded-2xl transition-all relative overflow-hidden group" data-fabric="clay">
+                                    <span class="w-4 h-4 rounded-full bg-[#C87A53] border border-studio-200 block mb-2"></span>
+                                    <span class="block text-xs font-bold text-studio-900">Ochre Velvet</span>
+                                    <span class="text-[10px] text-studio-300 block mt-1">Warm terracotta clay</span>
+                                </button>
+                                <!-- Option 4 -->
+                                <button onclick="setFabric('charcoal')" class="fabric-btn border-2 border-transparent hover:border-studio-200 bg-studio-100 p-4 text-left rounded-2xl transition-all relative overflow-hidden group" data-fabric="charcoal">
+                                    <span class="w-4 h-4 rounded-full bg-[#2B2B2B] border border-studio-200 block mb-2"></span>
+                                    <span class="block text-xs font-bold text-studio-900">Basalt Tweed</span>
+                                    <span class="text-[10px] text-studio-300 block mt-1">Gravel gray structure</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Modular Selection -->
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-xs uppercase tracking-widest font-bold text-studio-300 block">02. Add Lounge Segments</span>
+                                <button onclick="resetModules()" class="text-[10px] text-studio-300 hover:text-studio-900 uppercase tracking-widest font-bold transition-colors">Reset Layout</button>
+                            </div>
+                            <div class="grid grid-cols-1 gap-3">
+                                <!-- Module Button 1: Left Terminal -->
+                                <div class="flex items-center justify-between p-4 border border-studio-200 rounded-2xl bg-studio-50 hover:bg-studio-100 transition-colors">
+                                    <div class="flex items-center space-x-4">
+                                        <svg class="w-8 h-8 text-studio-900" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="4" y="10" width="8" height="18" rx="2" fill="currentColor"></rect>
+                                            <rect x="12" y="14" width="16" height="14" rx="2" fill="currentColor" opacity="0.3"></rect>
+                                        </svg>
+                                        <div>
+                                            <span class="block text-xs font-bold">Left Lounge Module</span>
+                                            <span class="text-[10px] text-studio-300">$850 • Width 110cm</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="addModule('left')" class="bg-studio-900 hover:bg-clay text-studio-50 w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-colors">+</button>
+                                </div>
+
+                                <!-- Module Button 2: Center Unit -->
+                                <div class="flex items-center justify-between p-4 border border-studio-200 rounded-2xl bg-studio-50 hover:bg-studio-100 transition-colors">
+                                    <div class="flex items-center space-x-4">
+                                        <svg class="w-8 h-8 text-studio-900" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="6" y="14" width="20" height="14" rx="2" fill="currentColor"></rect>
+                                        </svg>
+                                        <div>
+                                            <span class="block text-xs font-bold">Center Armless Module</span>
+                                            <span class="text-[10px] text-studio-300">$600 • Width 90cm</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="addModule('center')" class="bg-studio-900 hover:bg-clay text-studio-50 w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-colors">+</button>
+                                </div>
+
+                                <!-- Module Button 3: Right Terminal -->
+                                <div class="flex items-center justify-between p-4 border border-studio-200 rounded-2xl bg-studio-50 hover:bg-studio-100 transition-colors">
+                                    <div class="flex items-center space-x-4">
+                                        <svg class="w-8 h-8 text-studio-900" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="20" y="10" width="8" height="18" rx="2" fill="currentColor"></rect>
+                                            <rect x="4" y="14" width="16" height="14" rx="2" fill="currentColor" opacity="0.3"></rect>
+                                        </svg>
+                                        <div>
+                                            <span class="block text-xs font-bold">Right Lounge Module</span>
+                                            <span class="text-[10px] text-studio-300">$850 • Width 110cm</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="addModule('right')" class="bg-studio-900 hover:bg-clay text-studio-50 w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-colors">+</button>
+                                </div>
+
+                                <!-- Module Button 4: Ottoman -->
+                                <div class="flex items-center justify-between p-4 border border-studio-200 rounded-2xl bg-studio-50 hover:bg-studio-100 transition-colors">
+                                    <div class="flex items-center space-x-4">
+                                        <svg class="w-8 h-8 text-studio-900" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="6" y="16" width="20" height="12" rx="2" fill="currentColor"></rect>
+                                        </svg>
+                                        <div>
+                                            <span class="block text-xs font-bold">Ottoman Module</span>
+                                            <span class="text-[10px] text-studio-300">$450 • Width 90cm</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="addModule('ottoman')" class="bg-studio-900 hover:bg-clay text-studio-50 w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-colors">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Step 3: Premium Summary & Checkout Actions -->
+                    <div class="pt-8 mt-10 border-t border-studio-200">
+                        <div class="flex justify-between items-end mb-6">
+                            <div>
+                                <span class="block text-xs uppercase tracking-widest text-studio-300 font-bold">Estimated Total</span>
+                                <span class="text-3xl font-extrabold text-studio-900 mt-1 block" id="total-price">$0</span>
+                            </div>
+                            <div class="text-right text-[10px] text-studio-300 uppercase tracking-widest font-semibold">
+                                Complimentary White Glove Delivery
+                            </div>
+                        </div>
+                        <button onclick="triggerOrder()" class="w-full bg-studio-900 text-studio-50 hover:bg-clay py-4 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-300 rounded-xl flex items-center justify-center space-x-2">
+                            <span>Place Design Order</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Clean Studio Toast Drawer -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 bg-studio-900 text-studio-50 px-6 py-4 rounded-xl shadow-2xl z-50 transform translate-y-24 opacity-0 transition-all duration-500 max-w-sm">
+        <p class="font-bold text-[10px] uppercase tracking-widest text-clay">Studio Notice</p>
+        <p class="text-xs text-studio-200 mt-1 font-light" id="toast-message">Item updated successfully.</p>
+    </div>
+
+    <!-- OBJECTS SHOWCASE -->
+    <section id="objects" class="py-24 bg-studio-50 border-b border-studio-200">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 border-b border-studio-200 pb-8">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.25em] text-clay font-bold block mb-2">Designed Editions</span>
+                    <h2 class="font-syne text-3xl md:text-5xl font-extrabold uppercase">Sculptural Objects</h2>
+                </div>
+                <p class="text-studio-300 max-w-sm text-sm font-light leading-relaxed mt-4 md:mt-0">
+                    Sustainably produced architectural products. We make furniture, light pillars, and custom travertine elements.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Object 1 -->
+                <div class="group cursor-pointer">
+                    <div class="h-[420px] bg-studio-100 overflow-hidden relative rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1581428982868-e410dd047a90?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sculptural lounge chair travertine object" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/E6E6E2/111111?text=Object+No+01'">
+                    </div>
+                    <div class="mt-4 flex justify-between items-baseline">
+                        <h3 class="font-syne font-bold uppercase text-lg">WABI-SABI CHAIR</h3>
+                        <span class="text-sm text-studio-300">$1,200</span>
+                    </div>
+                    <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Molded Beech &amp; Raw Bouclé</p>
+                </div>
+
+                <!-- Object 2 -->
+                <div class="group cursor-pointer">
+                    <div class="h-[420px] bg-studio-100 overflow-hidden relative rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Brutalist concrete lighting sculpture" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/E6E6E2/111111?text=Object+No+02'">
+                    </div>
+                    <div class="mt-4 flex justify-between items-baseline">
+                        <h3 class="font-syne font-bold uppercase text-lg">Pillar Lamp</h3>
+                        <span class="text-sm text-studio-300">$640</span>
+                    </div>
+                    <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Textured Limestone &amp; Warm LED</p>
+                </div>
+
+                <!-- Object 3 -->
+                <div class="group cursor-pointer">
+                    <div class="h-[420px] bg-studio-100 overflow-hidden relative rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Minimalist design wooden console table" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/E6E6E2/111111?text=Object+No+03'">
+                    </div>
+                    <div class="mt-4 flex justify-between items-baseline">
+                        <h3 class="font-syne font-bold uppercase text-lg">Brutalist Console</h3>
+                        <span class="text-sm text-studio-300">$2,400</span>
+                    </div>
+                    <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Solid Smoked Oak Wood</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TACTILE LIBRARY -->
+    <section id="materials" class="py-24 bg-studio-100">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="max-w-xl mb-16">
+                <span class="text-xs uppercase tracking-[0.25em] text-clay font-bold block mb-2">Architectural Finishings</span>
+                <h2 class="font-syne text-3xl md:text-5xl font-extrabold uppercase">Tactile Library</h2>
+                <p class="text-studio-300 text-sm font-light leading-relaxed mt-4">
+                    Sample the organic materials we employ across our architectural commissions. We prioritize raw surfaces that patina beautifully.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Material Grid Selection (Left) -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                    
+                    <!-- Material 1 -->
+                    <div onclick="selectMaterial('travertine', 'Italian Travertine', 'Porous volcanic rock with raw beige and sand hues. Left unfilled to emphasize organic origin and beautiful textural depth.')" class="material-card border-2 border-studio-900 bg-studio-50 p-6 rounded-2xl cursor-pointer hover:shadow-md transition-all">
+                        <span class="text-xs font-bold text-clay">MAT-01</span>
+                        <h3 class="font-syne font-bold text-lg mt-2 uppercase">Travertine Stone</h3>
+                        <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Unfilled Premium Cut</p>
+                    </div>
+
+                    <!-- Material 2 -->
+                    <div onclick="selectMaterial('oak', 'Smoked Oak', 'A dark, heavily textured premium oak wood species. Charred subtly and oil-treated to display distinct, luxurious dark-brown fibers.')" class="material-card border-2 border-transparent bg-studio-50 p-6 rounded-2xl cursor-pointer hover:border-studio-200 transition-all">
+                        <span class="text-xs font-bold text-clay">MAT-02</span>
+                        <h3 class="font-syne font-bold text-lg mt-2 uppercase">Smoked Oak</h3>
+                        <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Matte Bio-Wax Finish</p>
+                    </div>
+
+                    <!-- Material 3 -->
+                    <div onclick="selectMaterial('zinc', 'Patinated Zinc', 'Industrial-grade oxidized metal plate finish. It holds a velvet grey aesthetic with unpredictable organic patterns.')" class="material-card border-2 border-transparent bg-studio-50 p-6 rounded-2xl cursor-pointer hover:border-studio-200 transition-all">
+                        <span class="text-xs font-bold text-clay">MAT-03</span>
+                        <h3 class="font-syne font-bold text-lg mt-2 uppercase">Oxidized Zinc</h3>
+                        <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Cold Galvanized Shell</p>
+                    </div>
+
+                    <!-- Material 4 -->
+                    <div onclick="selectMaterial('wool', 'Tactile Bouclé', 'Heavy woven loop yarn. We harvest virgin organic wool to create an incredibly soft, structural fabric for sculptural seating.')" class="material-card border-2 border-transparent bg-studio-50 p-6 rounded-2xl cursor-pointer hover:border-studio-200 transition-all">
+                        <span class="text-xs font-bold text-clay">MAT-04</span>
+                        <h3 class="font-syne font-bold text-lg mt-2 uppercase">Organic Bouclé</h3>
+                        <p class="text-xs text-studio-300 mt-1 uppercase tracking-wider">Raw Natural Wool</p>
+                    </div>
+
+                </div>
+
+                <!-- Material Detailed Presentation Card (Right) -->
+                <div class="lg:col-span-6 bg-studio-50 p-8 md:p-12 border border-studio-200 rounded-3xl min-h-[350px] flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-xs uppercase tracking-widest bg-studio-100 px-3 py-1 text-studio-900 font-bold rounded-md" id="detail-code">MAT-01</span>
+                            <span class="w-3 h-3 rounded-full bg-clay"></span>
+                        </div>
+                        <h3 class="font-syne text-2xl md:text-3xl font-extrabold uppercase mb-4" id="detail-title">Italian Travertine</h3>
+                        <p class="text-studio-300 text-sm font-light leading-relaxed" id="detail-desc">
+                            Porous volcanic rock with raw beige and sand hues. Left unfilled to emphasize organic origin and beautiful textural depth.
+                        </p>
+                    </div>
+                    
+                    <div class="border-t border-studio-200 pt-6 mt-8 flex justify-between items-center text-xs">
+                        <span class="text-studio-300 uppercase tracking-wider font-semibold">Sourcing Origin</span>
+                        <span class="font-bold uppercase tracking-widest text-studio-900" id="detail-origin">Tuscany, Italy</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INQUIRY FORM -->
+    <section class="py-24 bg-studio-900 text-studio-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-clay font-bold block">Get Started</span>
+                    <h2 class="font-syne text-4xl sm:text-5xl font-extrabold uppercase leading-none">Collaborate <br>with OBLIK</h2>
+                    <p class="text-studio-300 text-sm font-light leading-relaxed">
+                        Are you an interior architect, visual artist, or private developer? Reach out and our design desk will send tailored assets and engineering specifications for your plans.
+                    </p>
+                    <div class="space-y-3 pt-6 border-t border-studio-800">
+                        <p class="text-xs text-studio-300">STOCKHOLM WORKSPACE</p>
+                        <p class="text-sm font-bold">Kungsgatan 14, 111 35 Stockholm, Sweden</p>
+                        <p class="text-sm text-studio-300"><a href="mailto:design@oblik.systems" class="hover:text-clay transition-colors">design@oblik.systems</a></p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-studio-50 text-studio-900 p-8 md:p-12 rounded-3xl shadow-xl">
+                    <h3 class="font-syne text-xl font-bold uppercase mb-6 text-studio-900">Project inquiry</h3>
+                    <form onsubmit="handleInquiry(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-wider text-studio-300 font-bold mb-2">First &amp; Last Name</label>
+                                <input type="text" required="" class="w-full bg-studio-100 border-none rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-clay">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-wider text-studio-300 font-bold mb-2">Professional Email</label>
+                                <input type="email" required="" class="w-full bg-studio-100 border-none rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-clay">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-wider text-studio-300 font-bold mb-2">Message or Custom Project request</label>
+                            <textarea rows="4" class="w-full bg-studio-100 border-none rounded-xl p-4 text-sm focus:outline-none focus:ring-2 focus:ring-clay" placeholder="Describe your residential or hospitality design concept."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-studio-900 text-studio-50 hover:bg-clay py-4 text-xs font-bold uppercase tracking-widest transition-colors rounded-xl">
+                            Send inquiry
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-studio-900 text-studio-300 py-12 border-t border-studio-800 text-xs">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="font-syne text-studio-50 text-base tracking-widest uppercase font-extrabold">OBLIK.</span>
+            <p>© 2026 OBLIK SYSTEMS AB. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-studio-50 transition-colors">GitHub</a>
+                <a href="#" class="hover:text-studio-50 transition-colors">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE CONFIGURATOR LOGIC (PRESERVED & INTEGRATED) -->
+    <script>
+        // Module Database
+        const moduleDefs = {
+            left: { name: 'Left Unit', width: 110, seats: 1, price: 850, class: 'rounded-l-[32px] rounded-r-lg border-l-[10px] border-t-2' },
+            center: { name: 'Center Unit', width: 90, seats: 1, price: 600, class: 'rounded-lg border-t-2' },
+            right: { name: 'Right Unit', width: 110, seats: 1, price: 850, class: 'rounded-r-[32px] rounded-l-lg border-r-[10px] border-t-2' },
+            ottoman: { name: 'Ottoman', width: 90, seats: 0, price: 450, class: 'rounded-xl h-[85px] border-b-2' }
+        };
+
+        // Material Presets
+        const fabricColors = {
+            boucle: { bg: 'bg-[#EFE9DC]', text: 'border-[#4A4740]', shadow: 'shadow-[#EAE3D2]' },
+            sage: { bg: 'bg-[#8FA499]', text: 'border-[#425047]', shadow: 'shadow-[#7B8F85]' },
+            clay: { bg: 'bg-[#C87A53]', text: 'border-[#6B3A21]', shadow: 'shadow-[#B26A45]' },
+            charcoal: { bg: 'bg-[#2E2E2E]', text: 'border-[#151515]', shadow: 'shadow-[#1A1A1A]' }
+        };
+
+        // Configuration State
+        let currentFabric = 'boucle';
+        let activeModules = ['left', 'center', 'right']; // Default standard sofa layout
+
+        // Set Fabric
+        function setFabric(fabricKey) {
+            currentFabric = fabricKey;
+            
+            const buttons = document.querySelectorAll('.fabric-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-studio-900', 'bg-studio-50');
+                btn.classList.add('border-transparent', 'bg-studio-100');
+            });
+            const activeBtn = document.querySelector(`[data-fabric="${fabricKey}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'bg-studio-100');
+                activeBtn.classList.add('border-studio-900', 'bg-studio-50');
+            }
+
+            renderSofa();
+            showToast(`Fabric updated to ${fabricKey.toUpperCase()}`);
+        }
+
+        // Add Module
+        function addModule(moduleKey) {
+            if (activeModules.length >= 7) {
+                showToast("Maximum configuration size reached.", true);
+                return;
+            }
+            activeModules.push(moduleKey);
+            renderSofa();
+            showToast(`Added ${moduleDefs[moduleKey].name}.`);
+        }
+
+        // Reset All Modules
+        function resetModules() {
+            activeModules = [];
+            renderSofa();
+            showToast("Arrangement cleared.");
+        }
+
+        // Render Canvas
+        function renderSofa() {
+            const canvas = document.getElementById('sofa-canvas');
+            canvas.innerHTML = '';
+
+            if (activeModules.length === 0) {
+                canvas.innerHTML = `
+                    <div class="text-center py-10">
+                        <p class="text-xs uppercase tracking-widest text-studio-300 font-bold">No segments selected</p>
+                        <p class="text-[10px] text-studio-300 mt-1 font-light">Add components from the options on the right</p>
+                    </div>
+                `;
+                updateMetrics(0, 0, 0);
+                return;
+            }
+
+            let totalWidth = 0;
+            let totalSeats = 0;
+            let totalPrice = 0;
+
+            activeModules.forEach((modKey, idx) => {
+                const def = moduleDefs[modKey];
+                totalWidth += def.width;
+                totalSeats += def.seats;
+                totalPrice += def.price;
+
+                const fabric = fabricColors[currentFabric];
+                const el = document.createElement('div');
+                const heightClass = modKey === 'ottoman' ? 'h-[65px] md:h-[80px]' : 'h-[95px] md:h-[120px]';
+                
+                el.className = `module-block relative flex-shrink-0 cursor-pointer ${heightClass} w-[60px] md:w-[80px] ${fabric.bg} ${fabric.text} ${def.class} shadow-md flex items-center justify-center transform hover:-translate-y-1 hover:brightness-105`;
+                el.innerHTML = `
+                    <div class="absolute -top-2 -right-2 bg-studio-900 text-studio-50 w-5 h-5 rounded-full text-[10px] flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-clay shadow-sm transition-all" onclick="removeModule(${idx}); event.stopPropagation();">×</div>
+                    <span class="text-[8px] md:text-[10px] font-sans font-bold tracking-tight opacity-40 select-none pointer-events-none">${def.name.split(' ')[0]}</span>
+                `;
+                el.classList.add('group');
+
+                canvas.appendChild(el);
+            });
+
+            updateMetrics(totalWidth, totalSeats, totalPrice);
+        }
+
+        // Remove single module
+        function removeModule(index) {
+            activeModules.splice(index, 1);
+            renderSofa();
+            showToast("Segment removed.");
+        }
+
+        // Update Spec sheet details
+        function updateMetrics(width, seats, price) {
+            document.getElementById('metric-width').innerText = `${width} cm`;
+            document.getElementById('metric-seats').innerText = `${seats} persons`;
+            document.getElementById('metric-count').innerText = activeModules.length;
+            document.getElementById('total-price').innerText = `$${price.toLocaleString()}`;
+        }
+
+        // Material Visual presentation controller
+        function selectMaterial(id, name, desc) {
+            const cards = document.querySelectorAll('.material-card');
+            cards.forEach(card => {
+                card.classList.remove('border-studio-900');
+                card.classList.add('border-transparent');
+            });
+            event.currentTarget.classList.add('border-studio-900');
+            event.currentTarget.classList.remove('border-transparent');
+
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('detail-desc').innerText = desc;
+            
+            const origins = { travertine: 'Tuscany, Italy', oak: 'Småland, Sweden', zinc: 'Eindhoven, NL', wool: 'Gotland, Sweden' };
+            const codes = { travertine: 'MAT-01', oak: 'MAT-02', zinc: 'MAT-03', wool: 'MAT-04' };
+            
+            document.getElementById('detail-origin').innerText = origins[id];
+            document.getElementById('detail-code').innerText = codes[id];
+
+            showToast(`Material updated: ${name}`);
+        }
+
+        // Toast feedback
+        function showToast(message, isAlert = false) {
+            const toast = document.getElementById('toast-notification');
+            const msgNode = document.getElementById('toast-message');
+            msgNode.innerText = message;
+
+            if (isAlert) {
+                msgNode.classList.add('text-clay');
+            } else {
+                msgNode.classList.remove('text-clay');
+            }
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // Inquiry handler
+        function handleInquiry(event) {
+            event.preventDefault();
+            showToast("Success! Design inquiry sent.");
+            event.target.reset();
+        }
+
+        // Trigger order sequence
+        function triggerOrder() {
+            if (activeModules.length === 0) {
+                showToast("Build an arrangement first.", true);
+                return;
+            }
+            showToast(`Processing layout order with ${activeModules.length} modules.`);
+        }
+
+        // On window load
+        window.onload = function() {
+            renderSofa();
+        }
+    </script>
+
+</body></html>
